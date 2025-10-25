@@ -19,15 +19,13 @@
 
         <!-- Top App Bar -->
         <DockPanel Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}">
-            <TextBlock Text="Analizador Léxico" Foreground="White" FontSize="16"
+            <TextBlock Text="Analizador Léxico" Foreground="Black" FontSize="16"
                  VerticalAlignment="Center" Margin="12,0" />
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="8,0">
                 <Button Content="Abrir"
                 Click="Abrir_Click"
                 Margin="0,0,8,0"/>
-                <Button Content="Guardar"
-                Click="Guardar_Click"
-                Margin="0,0,8,0"/>
+                
                 <Button Content="Analizar"
                 Click="Analizar_Click"/>
             </StackPanel>
@@ -93,9 +91,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
-                        <Button Content="Exportar CSV" Click="ExportarCsv_Click"/>
-                    </StackPanel>
+                    
                 </Grid>
             </materialDesign:Card>
         </Grid>

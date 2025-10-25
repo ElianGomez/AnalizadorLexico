@@ -13,12 +13,5 @@
     <PackageReference Include="MaterialDesignThemes" Version="5.3.0" />
   </ItemGroup>
 
-	<ItemGroup>
-		<None Include="..\..\native\lexer.exe">
-			<Link>lexer.exe</Link>
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-
 
 </Project>

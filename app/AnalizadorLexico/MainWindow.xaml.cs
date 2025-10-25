@@ -39,12 +39,7 @@ namespace AnalizadorLexico
 				TxtSource.Text = File.ReadAllText(ofd.FileName, Encoding.UTF8);
 		}
 
-		private void Guardar_Click(object sender, RoutedEventArgs e)
-		{
-			var sfd = new SaveFileDialog { Filter = "Texto|*.txt" };
-			if (sfd.ShowDialog() == true)
-				File.WriteAllText(sfd.FileName, TxtSource.Text, Encoding.UTF8);
-		}
+		
 
 		private async void Analizar_Click(object sender, RoutedEventArgs e)
 		{
@@ -148,22 +143,6 @@ namespace AnalizadorLexico
 			return list.ToArray();
 		}
 
-		private void ExportarCsv_Click(object sender, RoutedEventArgs e)
-		{
-			var sfd = new SaveFileDialog { Filter = "CSV|*.csv" };
-			if (sfd.ShowDialog() == true)
-			{
-				var sb = new StringBuilder();
-				sb.AppendLine("Tipo,Lexema,Linea,Columna");
-				foreach (System.Data.DataRow r in _table.Rows)
-				{
-					var lex = r["Lexema"]?.ToString()?.Replace("\"", "\"\"") ?? "";
-					sb.AppendLine($"{r["Tipo"]},\"{lex}\",{r["Linea"]},{r["Columna"]}");
-				}
-				File.WriteAllText(sfd.FileName, sb.ToString(), Encoding.UTF8);
-				ShowSnack("Exportado CSV.");
-			}
-		}
 
 		private void ShowSnack(string msg) => _queue.Enqueue(msg);
 	}
