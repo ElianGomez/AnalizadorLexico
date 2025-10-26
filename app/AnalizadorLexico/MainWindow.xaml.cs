@@ -31,7 +31,6 @@ namespace AnalizadorLexico
 			TxtSource.Text = "int x = 10;\nif (x >= 10) return \"ok\"; // demo\n";
 		}
 
-		// --- Botones de la App Bar ---
 		private void Abrir_Click(object sender, RoutedEventArgs e)
 		{
 			var ofd = new OpenFileDialog { Filter = "Código|*.txt;*.c;*.cpp;*.cs;*.java;*.js|Todos|*.*" };
@@ -62,10 +61,8 @@ namespace AnalizadorLexico
 			}
 		}
 
-		// --- Ejecuta lexer.exe y devuelve el stdout (CSV) ---
 		private async Task<string> RunLexerAsync(string input)
 		{
-			// 🔧 Elimina posibles caracteres BOM o invisibles
 			input = input.TrimStart('\uFEFF', '\u200B', '\r', '\n');
 
 			var exe = Path.Combine(AppContext.BaseDirectory, "lexer.exe");
@@ -98,7 +95,6 @@ namespace AnalizadorLexico
 		}
 
 
-		// --- CSV -> DataTable ---
 		private void LoadCsvToTable(string csv)
 		{
 			using var sr = new StringReader(csv);
@@ -107,17 +103,15 @@ namespace AnalizadorLexico
 			while ((line = sr.ReadLine()) != null)
 			{
 				if (string.IsNullOrWhiteSpace(line)) continue;
-				if (header) { header = false; continue; } // salta encabezado
+				if (header) { header = false; continue; } 
 
-				var cols = SplitCsv(line); // Tipo,"Lexema",Linea,Columna
+				var cols = SplitCsv(line); 
 				if (cols.Length < 4) continue;
 
-				// Normaliza nombres de columnas con los Header de la grilla
 				_table.Rows.Add(cols[0], cols[1], int.Parse(cols[2]), int.Parse(cols[3]));
 			}
 		}
 
-		// Minimal CSV splitter (maneja comillas dobles escapadas)
 		private static string[] SplitCsv(string line)
 		{
 			var list = new System.Collections.Generic.List<string>();
